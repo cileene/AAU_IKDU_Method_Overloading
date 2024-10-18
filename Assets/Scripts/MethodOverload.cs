@@ -2,24 +2,23 @@ using UnityEngine;
 
 public class MethodOverload : MonoBehaviour
 {
-    // The first GettingOlder method increasing age by 1
+    // The first GettingOlder method
     public int GettingOlder(int currentAge)
     {
         currentAge += 1;
 
-        Debug.Log($"You are aging rapidly and you are now {currentAge} years old. Yikes...");
+        Debug.Log($"You are aging rapidly and next year you'll be {currentAge} years old. Yikes...");
 
         return currentAge;
     }
 
-    // The second GettingOlder method increasing age by the 
-    // length of my ongoing college education
-    public int GettingOlder(int currentAge, int letsGoToCollege)
+    // The second GettingOlder method
+    public int GettingOlder(int currentAge, int collegeYears)
     {
-        currentAge += letsGoToCollege;
+        currentAge += collegeYears;
 
         // Yes this string is a bit long.
-        Debug.Log($"You are aging rapidly and now you chose to go to college for {letsGoToCollege} years?! You are now {currentAge} years old. And without a pension plan.");
+        Debug.Log($"You are aging rapidly and now you chose to go to college for {collegeYears} more years?! Then you will be {currentAge} years old. And without a pension plan.");
 
         return currentAge;
     }
@@ -27,15 +26,14 @@ public class MethodOverload : MonoBehaviour
     void Start()
     {
         // Declaring my age
-        int myAge = 33;
-        myAge = GettingOlder(myAge);
+        int currentAge = 33;
+        currentAge = GettingOlder(currentAge);
 
-        // Now you might argue that random isn't a predefined value
-        // But to that I argue that the value is predefined by being coded as a random value
-        // Ergo, it is predefined value
-        // This was fun, thank you for coming to my TED talk
-        int randomYears = Random.Range(1, 8);
-        myAge = GettingOlder(myAge, randomYears);
+        // Cullumative years of future college education
+        int[] collegeYears = { 1, 2, 3 };
+        foreach (int years in collegeYears)
+        {
+            currentAge = GettingOlder(currentAge, years);
+        }
     }
-    // PS. And I am sorry for violating all conventions of effective method and variable naming
 }
